@@ -24,8 +24,8 @@ local LocalPlayer = Players.LocalPlayer
 
 -- Window
 local Window = Rayfield:CreateWindow({
-   Name = "Greenic Tools Hub",
-   LoadingTitle = "Greenic Tools Hub",
+   Name = "Utility Panel",
+   LoadingTitle = "Rayfield UI",
    LoadingSubtitle = "Universal Friendly Script",
 
    ConfigurationSaving = {
@@ -44,10 +44,10 @@ local Window = Rayfield:CreateWindow({
    }
 })
 
-Rayfield:ChangeTheme("Green")
+-- Tab
+local Tab = Window:CreateTab("Main", 4483362458)
 
-local Tab = Window:CreateTab("Main")
-
+-- Manual Copy Backup Button
 Tab:CreateButton({
    Name = "Copy Key Link Again",
    Callback = function()
@@ -58,17 +58,25 @@ Tab:CreateButton({
             Content = "Key link copied again.",
             Duration = 4
          })
+      else
+         Rayfield:Notify({
+            Title = "Clipboard Unsupported",
+            Content = "Your executor does not support clipboard.",
+            Duration = 5
+         })
       end
    end
 })
 
+-- Kick (Self)
 Tab:CreateButton({
    Name = "Kick (Self)",
    Callback = function()
-      LocalPlayer:Kick("You kicked yourself using Greenic Tools Hub.")
+      LocalPlayer:Kick("You kicked yourself using a friendly script.")
    end
 })
 
+-- Rejoin
 Tab:CreateButton({
    Name = "Rejoin Game",
    Callback = function()
@@ -76,17 +84,10 @@ Tab:CreateButton({
    end
 })
 
+-- Leave
 Tab:CreateButton({
    Name = "Leave Game",
    Callback = function()
       game:Shutdown()
    end
 })
-
-task.delay(1.5, function()
-    Rayfield:Notify({
-        Title = "Access Granted",
-        Content = "Made By Greenic on YT",
-        Duration = 5
-    })
-end)
